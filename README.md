@@ -31,7 +31,7 @@
 + エクスポートされたon-premises Weblogic 10.3.6ドメインの一部として、アプリケーションをインポートし、実行します。
 
 ### 前提条件 ###
-![](images/site.op.png)
+
 - このチュートリアルに使うVirtualBox イメージ（別途配布）が必要です。
 - Oracleクラウド環境（Java Cloud Servie、Database Cloud Servie、Storage Classic）のアカウントが必要です。
 
@@ -167,7 +167,7 @@ No stack trace available.
 
 ブラウザでURL [http://localhost:7003/petstore/faces/catalog.jsp](http://localhost:7003/petstore/faces/catalog.jsp) をアクセスしてください。VirtualBox環境では、二つの管理対象サーバーで組んでいるクラスタに対してロードバランサーが設定されていないです。なので、ポート7003と7004を通って直接に管理対象サーバーをアクセスしています。
 
-![](images/site.op.png)
+![](images/site.op.PNG)
 
 
 #### ２．AppToCloud で on-premises WebLogicドマインのエクスポート ####
@@ -248,21 +248,21 @@ AppToCloud ツールは、事前に用意しているVirtualBox環境に既に�
 
 **Step-1** Oracleのクラウドに[ログイン](common/sign.in.to.oracle.cloud.md)し、ダッシュボードからStorage Classic Cloud Serviceをクリックします。
 
-![](images/create.container.01.png)
+![](images/create.container.01.PNG)
 
 **Step-2** **Open Service Console**をクリックします。
 
-![](images/create.container.02.png)
+![](images/create.container.02.PNG)
 
 **Step-3** **Create Container**をクリックします。
 
-![](images/create.container.03.png)
+![](images/create.container.03.PNG)
 
 
 
 **Step-4** 一意のNameを入力し、**Create**をクリックします。
 
-![](images/create.container.04.png)
+![](images/create.container.04.PNG)
 
 ##### ２．３．`a2c-export.sh`実行
 
@@ -374,17 +374,17 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 
 **Step-3** 実行中に、ファイルがコンテナーに書き込まれていることを確認できます。
 
-  ![](images/rman.backup.02.png)
+  ![](images/rman.backup.02.PNG)
 
 **Step-4** 実行完了までしばらくお待ちください。正常に終了した画面は下記の様です。
 
-  ![](images/rman.backup.01.png)
+  ![](images/rman.backup.01.PNG)
 
 **Step-5** 実行完了後、DBIDを確認できます。（次のステップで、このDBIDを利用します）
 
 	$ [oracle@localhost rman]$ rman target /
 
-  ![](images/rman.backup.03.png)
+  ![](images/rman.backup.03.PNG)
 
 #### ４．バックアップからデータベースのインスタンスの作成
 
@@ -392,14 +392,14 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 
 **Step-1** Oracleのクラウドに[ログイン](common/sign.in.to.oracle.cloud.md)し、ダッシュボードから Databaseを開きます。
 
-  ![](images/create.dbcs.01.png)
+  ![](images/create.dbcs.01.PNG)
 
 **Step-2** **Open Service Console**をクリックします。
 
-  ![](images/create.dbcs.02.png)
+  ![](images/create.dbcs.02.PNG)
 
 **Step-3** **Create Service** をクリックします。
-  ![](images/create.dbcs.03.png)
+  ![](images/create.dbcs.03.PNG)
 
 **Step-4** Oracle Database Cloud Serviceのインスタンス作成に必要な基本情報を入力します。
 - Instance name：petstore
@@ -412,7 +412,7 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 - Software Edition：Enterprise Edition
 - Database Type：Single Instance
 
-  ![](images/create.dbcs.04.png)
+  ![](images/create.dbcs.04.PNG)
 
 **Step-5** Oracle Database Cloud Serviceのインスタンス作成に必要な詳細情報を入力します。
 
@@ -439,19 +439,19 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 - Username：クラウド Usernameと同じ
 - Password：クラウド Passwordと同じ
 
-  ![](images/create.dbcs.05.png)
+  ![](images/create.dbcs.05.PNG)
 
 **Step-6** 確認ページで入力した内容を確認し、問題なければ、「Create」をクリックします。
 
-  ![](images/create.dbcs.06.png)
+  ![](images/create.dbcs.06.PNG)
 
 **Step-7** 実行中の画面です。**Activity**タブを使用して、サービス・インスタンスの作成の進行状況とステータスを監視できます。
 
-  ![](images/create.dbcs.07.png)
+  ![](images/create.dbcs.07.PNG)
 
 **Step-8** 実行完了の状態です。
 
-  ![](images/create.dbcs.08.png)
+  ![](images/create.dbcs.08.PNG)
 
 ##### ４．２．1521ポートの有効化
 
@@ -459,21 +459,21 @@ Oracle Database Cloud Serviceのインスタンス作成した際に、いくつ
 
 **Step-1** 前に作成したサービスインスタンス名の横のハンバーガー・メニュー・アイコンをクリックし、「Access Rules」を選択します。
 
-  ![](images/open.listener.01.png)
+  ![](images/open.listener.01.PNG)
 
 **Step-2** ora_p2_dblistenerの横のハンバーガー・メニュー・アイコンをクリックし、「Enable」を選択します。
 
-  ![](images/open.listener.02.png)
+  ![](images/open.listener.02.PNG)
 
 **Step-3** 確認画面で「Enable」をクリックします。
 
-  ![](images/open.listener.03.png)
+  ![](images/open.listener.03.PNG)
 
 ##### ４．３．PDB名称確認
 
 作成したDatabase Cloud ServiceのインスタンスのPDBの名前を確認します。on-premisesのPDBの名前と同じのはずです。
 
-  ![](images/confirm.pdbname.01.png)
+  ![](images/confirm.pdbname.01.PNG)
 
 #### ５．AppToCloud で Oracle Java Cloud Service のインスタンスの作成 ####
 
@@ -488,11 +488,11 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 
 **Step-1** Oracleのクラウドに[ログイン](common/sign.in.to.oracle.cloud.md)し、ダッシュボードから Java Cloud Serviceを開き、「Open Service Console」をクリックします。
 
-  ![](images/createjcs1.png)
+  ![](images/createjcs1.PNG)
 
 **Step-2**  「Create Service」 をクリックし、 「Oracle Java Cloud Service — AppToCloud」 を選択します。
 
-  ![](images/createjcs2.png)
+  ![](images/createjcs2.PNG)
 
 **Step-3** Export ツールで生成されたJSONファイルの詳細を提供します。
 
@@ -500,7 +500,7 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 - Cloud Storage User Name：クラウド Usernameと同じ
 - Cloud Storage Password：クラウド Passwordと同じ
 
-  ![](images/createjcs3.png)
+  ![](images/createjcs3.PNG)
 
 **Step-4** Java Cloud Serviceのインスタンス作成に必要な基本情報を入力します。
 
@@ -512,7 +512,7 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 - Software Edition：Enterprise Edition
 - Metering frequency：Hourly
 
-  ![](images/createjcs4.png)
+  ![](images/createjcs4.PNG)
 
 **Step-5** Java Cloud Serviceの詳細ページで、必要なフィールドを入力します。  
 
@@ -544,7 +544,7 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 
 - Load Balancerの詳細：デフォルトのままにします。
 
-  ![](images/createjcs5.png)
+  ![](images/createjcs5.PNG)
 
 **Step-6** Additional Service DetailsでApplication Data Sourceを指定します。
 
@@ -553,11 +553,11 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 - Password：welcome1
 - PDB Name：PDBORCL
 
-  ![](images/createjcs6.png)
+  ![](images/createjcs6.PNG)
 
 **Step-7** 確認ページで入力した内容を確認し、問題なければ、「Create」をクリックします。
 
-  ![](images/createjcs7.png)
+  ![](images/createjcs7.PNG)
 
 **Activity**タブを使用して、サービス・インスタンスの作成の進行状況とステータスを監視できます。 サービス・インスタンスがプロビジョニングされ実行されたら、AppToCloud成果物をサービス・インスタンスにインポートする準備が整いました。
 
@@ -567,27 +567,27 @@ Oracle Java Cloud ServiceでAppToCloudサービス・インスタンスを作成
 
 **Step-1** 前に作成したサービスインスタンス名の横のハンバーガー・メニュー・アイコンをクリックし、「AppToCloud Import」を選択します。
 
-  ![](images/import1.png)
+  ![](images/import1.PNG)
 
 **Step-2** 確認画面で「OK」をクリックします。
 
-  ![](images/import2.png)
+  ![](images/import2.PNG)
 
 **Step-3** **Activity**タブを使用して、進行状況を監視できます。インポートが正常に終了すると、ソースドメインにあるアプリケーションやその他のドメインリソースがサービス・インスタンスに展開されます。
 
-  ![](images/import3.png)
+  ![](images/import3.PNG)
 
 **Step-4** インポートが正常に終了したら、サービス・インスタンスを再起動する必要です。サービスインスタンス名の横のハンバーガー・メニュー・アイコンをクリックし、「Restart」を選択します。
 
-  ![](images/restart1.png)
+  ![](images/restart1.PNG)
 
 **Step-5** 確認画面で「OK」をクリックします。
 
-  ![](images/restart2.png)
+  ![](images/restart2.PNG)
 
 **Step-6** 再起動完了までしばらくお待ちください。
 
-  ![](images/restart3.png)
+  ![](images/restart3.PNG)
 
 ##### ５．３．ロード・バランサ上のHTTPポートの有効化
 
@@ -595,41 +595,41 @@ Webコンソールを使用してOracle Java Cloud Serviceインスタンスを�
 
 **Step-1** 前に作成したサービスインスタンス名の横のハンバーガー・メニュー・アイコンをクリックし、「Open Load Balance Console」を選択します。
 
-  ![](images/menu-otd.png)
+  ![](images/menu-otd.PNG)
 
 **Step-2** デフォルトでは、SSLはサービス・インスタンスのソフトウェア・コンポーネント内ですでに有効になっています。 これらは、Oracle Java Cloud Serviceによって生成された自己署名SSL証明書を使用するように構成されています。 通常、クライアントは、この証明書の署名認証局(CA)が不明であり、信頼されていないことを示すメッセージを受け取ります。 カスタムSSL証明書またはCAから取得した証明書を使用するようにロード・バランサを更新できます。
 
 使用のブラウザによってメッセージ内容及び対処方法が違います。Chromeを利用する場合、下記の様なメッセージが受け取ります。「詳細設定」をクリックします。
 
-  ![](images/em_security.png)
+  ![](images/em_security.PNG)
 
 **Step-3** 画面の一番下にあるリンク「○○にアクセスする（安全ではありません）」をクリックしてください。
 
-  ![](images/em_security2.png)
+  ![](images/em_security2.PNG)
 
 **Step-4** サービス・インスタンスのプロビジョニング時に定義した資格証明を使用してコンソールにログインします。（WebLogic管理者のユーザ名とパスワードと同じ）
 
-  ![](images/login-otd.png)
+  ![](images/login-otd.PNG)
 
 **Step-5** Target Navigationアイコン![](images/fmw_control_target_nav_icon.png)をクリックします。「Traffic Director」フォルダを開き、Traffic Director構成の名前をクリックします。
 
-  ![](images/opc_config.png)
+  ![](images/opc_config.PNG)
 
 **Step-6** 「Traffic Director Configuration」をクリックし、「Administration」→「Listeners」を選択します。
 
-  ![](images/opc_config2.png)
+  ![](images/opc_config2.PNG)
 
 **Step-7** 「http-listener-1」をクリックします。
 
-  ![](images/opc_config3.png)
+  ![](images/opc_config3.PNG)
 
 **Step-8** 「Enabled」チェック・ボックスを選択します。
 
-  ![](images/opc_config4.png)
+  ![](images/opc_config4.PNG)
 
 **Step-9** 「Apply」をクリックし、変更をアクティブ化します。
 
-  ![](images/opc_config5.png)
+  ![](images/opc_config5.PNG)
 
 ##### ５．４．HTTPポートのアクセス・ルールの作成
 
@@ -637,11 +637,11 @@ HTTPポートを介したロード・バランサ(Oracle Traffic Director)への
 
 **Step-1** 前に作成したサービスインスタンス名の横のハンバーガー・メニュー・アイコンをクリックし、「Access Rules」を選択します。
 
-  ![](images/create.access.rule.01.png)
+  ![](images/create.access.rule.01.PNG)
 
 **Step-2** 「Create Rule」をクリックします。
 
-  ![](images/create.access.rule.02.png)
+  ![](images/create.access.rule.02.PNG)
 
 **Step-3** 「Create Access Rule」ダイアログが表示されます。下記を入力し、「Create」をクリックします。
 
@@ -652,11 +652,11 @@ HTTPポートを介したロード・バランサ(Oracle Traffic Director)への
 - Destination Port(s)：80
 - Protocol：デフォルト値（TCP）のままにしておきます。
 
-  ![](images/create.access.rule.03.png)
+  ![](images/create.access.rule.03.PNG)
 
 **Step-4** アクセスルールは作成後にアクセスルールテーブルに表示されます。
 
-  ![](images/create.access.rule.04.png)
+  ![](images/create.access.rule.04.PNG)
 
 ##### ５．５．Load BalancerのパブリックIPアドレスの取得
 
@@ -664,15 +664,15 @@ Java Cloud ServiceにデプロイされたPetstoreアプリケーションをチ
 
 **Step-1** 作成したJava Cloud Serviceのインスタンスをクリックします。
 
-  ![](images/get.load.balance.ip.01.png)
+  ![](images/get.load.balance.ip.01.PNG)
 
 **Step-2** Load Balancerを展開し、パブリックIPアドレスをコピーします。
-  ![](images/get.load.balance.ip.02.png)
+  ![](images/get.load.balance.ip.02.PNG)
 
 ##### ５．６．PetStore アプリケーションのアクセス
 
 ブラウザでLoad BalancerのパブリックIPと `/petstore/faces/catalog.jsp` を連結したURLをアクセスします。例えば、`http://140.86.15.244/petstore/faces/catalog.jsp`。
 
-  ![](images/site.png)
+  ![](images/site.PNG)
 
 おめでとうございます！Oracle Java Cloud Service の AppToCloud という特性を利用し、on-premisesのJEE5 アプリケーションをOracle・パブリック・クラウド・サービスに遷移することを体験して頂きました。AppToCloudの移行の詳細については、[ドキュメント](https://docs.oracle.com/en/cloud/paas/java-cloud/jscug/migrating-applications-oracle-java-cloud-service.html)を参照してください。
