@@ -164,8 +164,7 @@ No stack trace available.
 ```
 **Step-3** サンプル・アプリケーションPetstoreを確認します。
 
-ブラウザでURL*http://localhost:7003/petstore/faces/catalog.jsp*をアクセスしてください。VirtualBox環境では、二つの管理対象サーバーで組んでいるクラスタに対してロードバランサーが設定されていないです。なので、ポート7003と7004を通って直接に管理対象サーバーをアクセスしています。
-
+ブラウザでURL [http://localhost:7003/petstore/faces/catalog.jsp](http://localhost:7003/petstore/faces/catalog.jsp) をアクセスしてください。VirtualBox環境では、二つの管理対象サーバーで組んでいるクラスタに対してロードバランサーが設定されていないです。なので、ポート7003と7004を通って直接に管理対象サーバーをアクセスしています。
 ![](images/site-op.png)
 
 
