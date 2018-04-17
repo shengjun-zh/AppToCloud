@@ -258,8 +258,6 @@ AppToCloud ツールは、事前に用意しているVirtualBox環境に既に�
 
 ![](images/create.container.03.PNG)
 
-
-
 **Step-4** 一意のNameを入力し、**Create**をクリックします。
 
 ![](images/create.container.04.PNG)
@@ -413,7 +411,7 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 - Software Edition：Enterprise Edition
 - Database Type：Single Instance  
 
-![](images/create.dbcs.04.PNG)
+<br/>![](images/create.dbcs.04.PNG)
 
 **Step-5** Oracle Database Cloud Serviceのインスタンス作成に必要な詳細情報を入力します。
 
@@ -440,7 +438,7 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 - Username：クラウド Usernameと同じ
 - Password：クラウド Passwordと同じ
 
-  ![](images/create.dbcs.05.PNG)
+<br/>![](images/create.dbcs.05.PNG)
 
 **Step-6** 確認ページで入力した内容を確認し、問題なければ、「Create」をクリックします。
 
@@ -500,8 +498,8 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 - Exported .json File：Oracle Storage Cloud ServiceにアップロードされたJSONファイルの完全修飾名を入力します。例：Storage-MyAccount/Container1/domain1.json
 - Cloud Storage User Name：クラウド Usernameと同じ
 - Cloud Storage Password：クラウド Passwordと同じ
-<br/>
-  ![](images/createJCS3.PNG)
+
+<br/>![](images/createJCS3.PNG)
 
 **Step-4** Java Cloud Serviceのインスタンス作成に必要な基本情報を入力します。
 
@@ -513,7 +511,7 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 - Software Edition：Enterprise Edition
 - Metering frequency：Hourly
 
-  ![](images/createJCS4.PNG)
+<br/>![](images/createJCS4.PNG)
 
 **Step-5** Java Cloud Serviceの詳細ページで、必要なフィールドを入力します。  
 
@@ -545,7 +543,7 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 
 - Load Balancerの詳細：デフォルトのままにします。
 
-  ![](images/createJCS5.PNG)
+<br/>![](images/createJCS5.PNG)
 
 **Step-6** Additional Service DetailsでApplication Data Sourceを指定します。
 
@@ -554,11 +552,11 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 - Password：welcome1
 - PDB Name：PDBORCL
 
-  ![](images/createJCS6.PNG)
+<br/>![](images/createJCS6.PNG)
 
 **Step-7** 確認ページで入力した内容を確認し、問題なければ、「Create」をクリックします。
 
-  ![](images/createJCS7.PNG)
+<br/>![](images/createJCS7.PNG)
 
 **Activity**タブを使用して、サービス・インスタンスの作成の進行状況とステータスを監視できます。 サービス・インスタンスがプロビジョニングされ実行されたら、AppToCloud成果物をサービス・インスタンスにインポートする準備が整いました。
 
@@ -653,7 +651,7 @@ HTTPポートを介したロード・バランサ(Oracle Traffic Director)への
 - Destination Port(s)：80
 - Protocol：デフォルト値（TCP）のままにしておきます。  
   
-![](images/create.access.rule.03.PNG)
+<br/>![](images/create.access.rule.03.PNG)
 
 **Step-4** アクセスルールは作成後にアクセスルールテーブルに表示されます。
 
