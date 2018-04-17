@@ -31,7 +31,7 @@
 + エクスポートされたon-premises Weblogic 10.3.6ドメインの一部として、アプリケーションをインポートし、実行します。
 
 ### 前提条件 ###
-
+![](images/site.op.png)
 - このチュートリアルに使うVirtualBox イメージ（別途配布）が必要です。
 - Oracleクラウド環境（Java Cloud Servie、Database Cloud Servie、Storage Classic）のアカウントが必要です。
 
@@ -48,7 +48,120 @@ on-premises のWeblogic 10.3.6 ドマインの作成 及び サンプル・ア�
 **Step-2** その配下にあるスクリプト `prepareEnv.sh` を実行します。
 
 このスクリプトは `prepareEnv.sh <db user> <db password> [<PDB name>]`の様に実行してください。事前に用意しているVirtualBox イメージの中で、下記の様にパラメータを渡してください：
+```
+$ [oracle@localhost app-2-cloud]$ ./prepareEnv.sh system welcome1 pdborcl
+Oracle database (sid: orcl) is NOT running. Starting database first.
+Processing Database instance "orcl": log file /u01/app/oracle/product/12.1.0/dbhome_1/startup.log
+Open pluggable database: pdborcl.
+pdborcl is already opened
+********** CREATING PetStore DB USER **********************************************
 
+User dropped.
+
+
+User created.
+
+
+Grant succeeded.
+
+********** CREATING DB ENTRIES FOR PetStore Application ***************************
+
+SQL*Plus: Release 12.1.0.2.0 Production on Mon Apr 9 20:08:58 2018
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+SQL> 
+Table created.
+・・・
+＜中略＞
+・・・
+Table created.
+
+1 row created.
+・・・
+＜中略＞
+・・・
+1 row created.
+
+Commit complete.
+
+SQL> Disconnected from Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+********** CREATING PETSTORE_DOMAIN (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ***********
+>  succeed: read template from "/u01/content/cloud-native-devops-workshop/app-2-cloud/template/petstore_domain_template.jar"
+>  succeed: find User "weblogic" as u1_CREATE_IF_NOT_EXIST
+>  succeed: set u1_CREATE_IF_NOT_EXIST attribute Password to "********"
+>  succeed: write Domain to "/u01/wins/wls1036/user_projects/domains/petstore_domain"
+>  succeed: close template
+********** STARTING ADMIN SERVER (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) **************
+********** STARTING MSERVER1 SERVER (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ***********
+********** STARTING MSERVER2 SERVER (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ***********
+********** ADMIN SERVER (WEBLOGIC 10.3.6 - DOMAIN1036) HAS BEEN STARTED ***********
+Archive:  ../dpct/domain-templates/Domain1036.jar
+  inflating: /u01/content/cloud-native-devops-workshop/app-2-cloud/petstore.12.war  
+********** DEPLOY PETSTORE (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ********************
+
+Initializing WebLogic Scripting Tool (WLST) ...
+
+Welcome to WebLogic Server Administration Scripting Shell
+
+Type help() for help on available commands
+
+************************ Create resources for PETSTORE application *****************************************
+Connecting to t3://localhost:7001 with userid weblogic ...
+Successfully connected to Admin Server 'AdminServer' that belongs to domain 'petstore_domain'.
+
+Warning: An insecure protocol was used to connect to the 
+server. To ensure on-the-wire security, the SSL port or 
+Admin port should be used instead.
+
+Location changed to edit tree. This is a writable tree with 
+DomainMBean as the root. To make changes you will need to start 
+an edit session via startEdit(). 
+
+For more help, use help(edit)
+
+Starting an edit session ...
+Started edit session, please be sure to save and activate your 
+changes once you are done.
+Saving all your changes ...
+Saved all your changes successfully.
+Activating all your changes, this may take a while ... 
+The edit lock associated with this edit session is released 
+once the activation is completed.
+Activation completed
+************************ Deploy PETSTORE application *****************************************
+Deploying application from /u01/wins/wls1036/wlserver_10.3/common/deployable-libraries/jsf-2.0.war to targets petstore_cluster (upload=false) ...
+     
+.Completed the deployment of Application with status completed
+Current Status of your Deployment:
+Deployment command type: deploy
+Deployment State       : completed
+Deployment Message     : [Deployer:149194]Operation 'deploy' on application 'jsf [LibSpecVersion=2.0,LibImplVersion=1.0.0.0_2-0-2]' has succeeded on 'mserver2'
+Deploying application from /u01/content/cloud-native-devops-workshop/app-2-cloud/petstore.12.war to targets petstore_cluster (upload=false) ...
+     
+...Completed the deployment of Application with status completed
+Current Status of your Deployment:
+Deployment command type: deploy
+Deployment State       : completed
+Deployment Message     : [Deployer:149194]Operation 'deploy' on application 'Petstore' has succeeded on 'mserver2'
+Starting application Petstore.
+     
+.Completed the start of Application with status completed
+Current Status of your Deployment:
+Deployment command type: start
+Deployment State       : completed
+Deployment Message     : [Deployer:149194]Operation 'start' on application 'Petstore' has succeeded on 'mserver2'
+No stack trace available.
+     
+********** OPEN PETSTORE APPLICATION AT http://localhost:7003/petstore/faces/catalog.jsp
+[oracle@localhost app-2-cloud]$ 
+```
 
 **Step-3** サンプル・アプリケーションPetstoreを確認します。
 
