@@ -500,7 +500,7 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 - Exported .json File：Oracle Storage Cloud ServiceにアップロードされたJSONファイルの完全修飾名を入力します。例：Storage-MyAccount/Container1/domain1.json
 - Cloud Storage User Name：クラウド Usernameと同じ
 - Cloud Storage Password：クラウド Passwordと同じ
-
+<br/>
   ![](images/createJCS3.PNG)
 
 **Step-4** Java Cloud Serviceのインスタンス作成に必要な基本情報を入力します。
