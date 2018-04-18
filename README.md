@@ -246,19 +246,19 @@ a2c-healthcheck completed successfully (exit code = 0)
 
 ##### ２．２．AppToCloud成果物格納用のコンテナーの作成
 
-**Step-1** Oracleのクラウドに[ログイン](common/sign.in.to.oracle.cloud.md)し、ダッシュボードからStorage Classic Cloud Serviceをクリックします。
+**Step-1** Oracleのクラウドに[ログイン](common/sign.in.to.oracle.cloud.md)し、ダッシュボードから「Storage Classic」をクリックします。
 
 ![](images/create.container.01.PNG)
 
-**Step-2** **Open Service Console**をクリックします。
+**Step-2** 「Open Service Console」をクリックします。
 
 ![](images/create.container.02.PNG)
 
-**Step-3** **Create Container**をクリックします。
+**Step-3** 「Create Container」をクリックします。
 
 ![](images/create.container.03.PNG)
 
-**Step-4** 一意のNameを入力し、**Create**をクリックします。
+**Step-4** 一意のNameを入力し、「Create」をクリックします。
 
 ![](images/create.container.04.PNG)
 
@@ -392,7 +392,7 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 
   ![](images/create.dbcs.01.PNG)
 
-**Step-2** **Open Service Console**をクリックします。
+**Step-2** 「Open Service Console」をクリックします。
 
   ![](images/create.dbcs.02.PNG)
 
@@ -562,7 +562,7 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 
 ##### ５．２．アプリケーションをサービス・インスタンスにインポートする #####
 
-Oracle Java Cloud ServiceでAppToCloudサービス・インスタンスを作成したら、インポートを実行して、オンプレミス環境から収集されたアプリケーションやその他のドメインリソースでサービス・インスタンスを自動的に更新します。
+Oracle Java Cloud ServiceでAppToCloudサービス・インスタンスを作成したら、インポートを実行して、on-premises 環境から収集されたアプリケーションやその他のドメインリソースでサービス・インスタンスを自動的に更新します。
 
 **Step-1** 前に作成したサービスインスタンス名の横のハンバーガー・メニュー・アイコンをクリックし、「AppToCloud Import」を選択します。
 
@@ -602,7 +602,7 @@ Webコンソールを使用してOracle Java Cloud Serviceインスタンスを�
 
   ![](images/em_security.PNG)
 
-**Step-3** 画面の一番下にあるリンク「○○にアクセスする（安全ではありません）」をクリックしてください。
+**Step-3** 画面の一番下にあるリンク「○○にアクセスする（安全ではありません）」をクリックします。
 
   ![](images/em_security2.PNG)
 
