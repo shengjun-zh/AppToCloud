@@ -177,18 +177,18 @@ AppToCloud ツールは、事前に用意しているVirtualBox環境に既に�
 ##### ２．１．`a2c-healthcheck.sh`実行
 
 **Step-1** 今回のワークショップでは、事前に用意しているVirtualBox環境を利用するので、下記の様に、ディレクトリ `/u01/oracle_jcs_app2cloud` に移動し、その配下に `a2c-healthcheck.sh` が存在していることを確認してください。
-
-	[oracle@localhost app-2-cloud]$ ls -la /u01/oracle_jcs_app2cloud/bin
-	total 60
-	drwxr-xr-x. 2 oracle oracle 4096 Oct 10 09:01 .
-	drwxr-x---. 7 oracle oracle 4096 Oct 11 00:16 ..
-	-rw-r-----. 1 oracle oracle 7582 Aug  4 11:25 a2c-export.cmd
-	-rwxr-x---. 1 oracle oracle 7137 Aug  4 11:25 a2c-export.sh
-	-rw-r-----. 1 oracle oracle 8683 Aug  4 11:25 a2c-healthcheck.cmd
-	-rwxr-x---. 1 oracle oracle 8169 Aug  4 11:25 a2c-healthcheck.sh
-	-rw-r-----. 1 oracle oracle 6095 Aug  4 11:25 a2c-import.cmd
-	-rwxr-x---. 1 oracle oracle 5673 Aug  4 11:25 a2c-import.sh
-
+```
+[oracle@localhost app-2-cloud]$ ls -la /u01/oracle_jcs_app2cloud/bin
+total 60
+drwxr-xr-x. 2 oracle oracle 4096 Oct 10 09:01 .
+drwxr-x---. 7 oracle oracle 4096 Oct 11 00:16 ..
+-rw-r-----. 1 oracle oracle 7582 Aug  4 11:25 a2c-export.cmd
+-rwxr-x---. 1 oracle oracle 7137 Aug  4 11:25 a2c-export.sh
+-rw-r-----. 1 oracle oracle 8683 Aug  4 11:25 a2c-healthcheck.cmd
+-rwxr-x---. 1 oracle oracle 8169 Aug  4 11:25 a2c-healthcheck.sh
+-rw-r-----. 1 oracle oracle 6095 Aug  4 11:25 a2c-import.cmd
+-rwxr-x---. 1 oracle oracle 5673 Aug  4 11:25 a2c-import.sh
+```
 **Step-2** AppToCloudツールの中にあるコマンド`a2c-healthcheck`でOracle Java Cloud Serviceへ遷移するon-premisesのWebLogic サーバ・ドマインとアプリケーションを検証します。このコマンドのパラメータは下記です：
 
 - -oh：WebLogicサーバがインストールしている最上位ディレクトリ。 `ORACLE_HOME`とも呼ばれます。
@@ -197,50 +197,50 @@ AppToCloud ツールは、事前に用意しているVirtualBox環境に既に�
 - -outputDir：アーカイブファイル出力先のディレクトリ
 
 コマンド `a2c-healthcheck.sh` で実行しているドマインを検証し、エクスポートします。管理者のパスワードを入力と言われた時に、*welcome1*を入力してください。
+```
+[oracle@localhost app-2-cloud]$ /u01/oracle_jcs_app2cloud/bin/a2c-healthcheck.sh -oh /u01/wins/wls1036 -adminUrl t3://localhost:7001 -adminUser weblogic -outputDir /u01/jcs_a2c_output
+JDK version is 1.8.0_60-b27
+A2C_HOME is /u01/oracle_jcs_app2cloud
+/usr/java/latest/bin/java -Xmx512m -cp /u01/oracle_jcs_app2cloud/jcs_a2c/modules/features/jcsa2c_lib.jar -Djava.util.logging.config.class=oracle.jcs.lifecycle.util.JCSLifecycleLoggingConfig oracle.jcs.lifecycle.healthcheck.AppToCloudHealthCheck -oh /u01/wins/wls1036 -adminUrl t3://localhost:7001 -adminUser weblogic -outputDir /u01/jcs_a2c_output
+The a2c-healthcheck program will write its log to /u01/oracle_jcs_app2cloud/logs/jcsa2c-healthcheck.log
+Enter password: 
+Checking Domain Health
+Connecting to domain
 
-	[oracle@localhost app-2-cloud]$ /u01/oracle_jcs_app2cloud/bin/a2c-healthcheck.sh -oh /u01/wins/wls1036 -adminUrl t3://localhost:7001 -adminUser weblogic -outputDir /u01/jcs_a2c_output
-	JDK version is 1.8.0_60-b27
-	A2C_HOME is /u01/oracle_jcs_app2cloud
-	/usr/java/latest/bin/java -Xmx512m -cp /u01/oracle_jcs_app2cloud/jcs_a2c/modules/features/jcsa2c_lib.jar -Djava.util.logging.config.class=oracle.jcs.lifecycle.util.JCSLifecycleLoggingConfig oracle.jcs.lifecycle.healthcheck.AppToCloudHealthCheck -oh /u01/wins/wls1036 -adminUrl t3://localhost:7001 -adminUser weblogic -outputDir /u01/jcs_a2c_output
-	The a2c-healthcheck program will write its log to /u01/oracle_jcs_app2cloud/logs/jcsa2c-healthcheck.log
-	Enter password: 
-	Checking Domain Health
-	Connecting to domain
-	
-	Connected to the domain petstore_domain
-	
-	Checking Java Configuration
-	...
-	checking server runtime : mserver2
-	...
-	checking server runtime : mserver1
-	...
-	checking server runtime : AdminServer
-	Done Checking Java Configuration
-	Checking Servers Health
-	
-	Done checking Servers Health
-	Checking Applications Health
-	Checking jsf#2.0@1.0.0.0_2-0-2
-	Checking Petstore
-	Done Checking Applications Health
-	Checking Datasource Health
-	Done Checking Datasource Health
-	Done Checking Domain Health
-	
-	Activity Log for HEALTHCHECK
-	
-	Informational Messages:
-	
-	1. JCSLCM-04037: Healthcheck Completed
-	
-	An HTML version of this report can be found at /u01/jcs_a2c_output/reports/petstore_domain-healthcheck-activityreport.html
-	
-	Output archive saved as /u01/jcs_a2c_output/petstore_domain.zip.  You can use this archive for the a2c-export tool.
-	
-	a2c-healthcheck completed successfully (exit code = 0)
-	[oracle@localhost bin]$ 
+Connected to the domain petstore_domain
 
+Checking Java Configuration
+...
+checking server runtime : mserver2
+...
+checking server runtime : mserver1
+...
+checking server runtime : AdminServer
+Done Checking Java Configuration
+Checking Servers Health
+
+Done checking Servers Health
+Checking Applications Health
+Checking jsf#2.0@1.0.0.0_2-0-2
+Checking Petstore
+Done Checking Applications Health
+Checking Datasource Health
+Done Checking Datasource Health
+Done Checking Domain Health
+
+Activity Log for HEALTHCHECK
+
+Informational Messages:
+
+1. JCSLCM-04037: Healthcheck Completed
+
+An HTML version of this report can be found at /u01/jcs_a2c_output/reports/petstore_domain-healthcheck-activityreport.html
+
+Output archive saved as /u01/jcs_a2c_output/petstore_domain.zip.  You can use this archive for the a2c-export tool.
+
+a2c-healthcheck completed successfully (exit code = 0)
+[oracle@localhost bin]$ 
+```
 **Step-3** Health Checkツールが成功したこと（exit code = 0）を確認してください。もし何か問題が有れば、問題点を解決してもう一回Health Checkツールを実行してください。
 このレポートのHTMLファイルで見ることも可能です。Health Checkの出力ログからHTMLファイルの箇所を示しているので、そちらを参照してください。
 
@@ -515,31 +515,31 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 
 **Step-5** Java Cloud Serviceの詳細ページで、必要なフィールドを入力します。  
 
-  **WebLogic Configuration：**
+**WebLogic Configuration：**
 
 - Enable access to Administration Consoles：チェックON
 
-  **Database Configuration：**
+**Database Configuration：**
 
 - Database Instance Name：用意したDatabase インスタンスpetstoreを選択します。
 - PDB Name：通常はデフォルト値（PDB1）のままにしておきます。
 - Database Administrator Username：sys
 - Database Password：データベース管理者のパスワード
 
-  **WebLogic Access：**
+**WebLogic Access：**
 
 - SSH Public Key：開いているダイアログで新しい値を作成し、keyをダウンロードします。
 - Local Administrative Username：通常はデフォルト値（weblogic）のままにしておきます。
 - Password：WebLogic管理者のパスワード
 
-  **Backup and Recovery Configuration：**
+**Backup and Recovery Configuration：**
 
 - Backup Destination：Both Remote and Disk Storage
 - Username：クラウド Usernameと同じ
 - Password：クラウド Passwordと同じ
 - Create Cloud Storage Container：チェックON
 
-  **Load Balancer：**
+**Load Balancer：**
 
 - Load Balancerの詳細：デフォルトのままにします。
 
