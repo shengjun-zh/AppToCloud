@@ -1,5 +1,8 @@
+
+
 ![](images/customer.logo.png)
 ---
+
 # Oracle クラウド・ネイティブ DevOps ワークショップ #
 ----
 ## Weblogic 10.3.6 (on-premises) アプリケーションをOracle Java Cloud Serviceに遷移（DB遷移含め） ##
@@ -33,13 +36,13 @@
 ### 前提条件 ###
 
 - このチュートリアルに使うVirtualBox イメージ（別途配布）が必要です。
-- Oracleクラウド環境（Java Cloud Servie、Database Cloud Servie、Storage Classic）のアカウントが必要です。
+- Oracleクラウド環境（Java Cloud Servie、Database Cloud Servie、Storage Classic）のアカウント（別途配布）が必要です。
 
 ### Steps ###
 
 #### １．on-premises WebLogicドマインの作成及びアプリケーションのデプロイ ####
 
-on-premises のWeblogic 10.3.6 ドマインの作成 及び サンプル・アプリケーションPetstoreのデプロイを行います。事前に用意したVirtualBox イメージの中には、スクリプトを提供しています。このスクリプトを実行することにより、on-premises のデータベースの起動、Weblogic 10.3.6 ドマインの作成、Weblogic サーバーの起動 及び サンプル・アプリケーションPetstoreのデプロイ が全部自動的に完成出来ます。
+on-premises のWeblogic 10.3.6 ドマインの作成 及び サンプル・アプリケーションPetstoreのデプロイを行います。事前に用意したVirtualBox イメージの中には、スクリプトを提供してあります。このスクリプトを実行することにより、on-premises のデータベースの起動、Weblogic 10.3.6 ドマインの作成、Weblogic サーバーの起動 及び サンプル・アプリケーションPetstoreのデプロイ が全部自動的に完成出来ます。
 
 **Step-1** terminalを立ち上げ、ディレクトリ `GIT_REPO_LOCAL_CLONE/app-2-cloud` に移動します。
 
@@ -172,7 +175,7 @@ No stack trace available.
 
 #### ２．AppToCloud で on-premises WebLogicドマインのエクスポート ####
 
-AppToCloud ツールは、事前に用意しているVirtualBox環境に既に入っています。もし、事前に用意しているVirtualBox環境を利用していない場合、[サイト](http://www.oracle.com/technetwork/topics/cloud/downloads/index.html#apptocloud)からダウンロードする必要です。Oracle Java Cloud Service のサービス・コンソールのDownload Centerからダウンロードすることも出来ます。コンソール画面の右上のユーザ名をクリックし、表示されるメニューからHelp→Download Centerを選択してください。このツールは、圧縮ファイル `a2c-zip-installer.zip`となっています。ローカルに保存してください。また、インストールするには、管理サーバ所属のマシンにインストールする必要です。
+AppToCloud ツールは、事前に用意しているVirtualBox環境に既に入っています。もし、事前に用意しているVirtualBox環境を利用していない場合、[サイト](http://www.oracle.com/technetwork/topics/cloud/downloads/index.html#apptocloud)からダウンロードする必要です。Oracle Java Cloud Service のサービス・コンソールのDownload Centerからダウンロードすることも出来ます。コンソール画面の右上のユーザ名をクリックし、表示されるメニューからHelp→Download Centerを選択してください。このツールは、圧縮ファイル `a2c-zip-installer.zip`となっています。ローカルに保存してください。また、インストールするには、管理サーバー所属のマシンにインストールする必要です。
 
 ##### ２．１．`a2c-healthcheck.sh`実行
 
@@ -189,11 +192,11 @@ drwxr-x---. 7 oracle oracle 4096 Oct 11 00:16 ..
 -rw-r-----. 1 oracle oracle 6095 Aug  4 11:25 a2c-import.cmd
 -rwxr-x---. 1 oracle oracle 5673 Aug  4 11:25 a2c-import.sh
 ```
-**Step-2** AppToCloudツールの中にあるコマンド`a2c-healthcheck`でOracle Java Cloud Serviceへ遷移するon-premisesのWebLogic サーバ・ドマインとアプリケーションを検証します。このコマンドのパラメータは下記です：
+**Step-2** AppToCloudツールの中にあるコマンド`a2c-healthcheck`でOracle Java Cloud Serviceへ遷移するon-premisesのWebLogic サーバー・ドマインとアプリケーションを検証します。このコマンドのパラメータは下記です：
 
-- -oh：WebLogicサーバがインストールしている最上位ディレクトリ。 `ORACLE_HOME`とも呼ばれます。
-- -adminUrl：管理サーバのAdministration URL
-- -adminUser：管理者のユーザ名
+- -oh：WebLogicサーバーがインストールしている最上位ディレクトリ。 `ORACLE_HOME`とも呼ばれます。
+- -adminUrl：WebLogic 管理サーバーのAdministration URL
+- -adminUser：WebLogic管理者のユーザ名
 - -outputDir：アーカイブファイル出力先のディレクトリ
 
 コマンド `a2c-healthcheck.sh` で実行しているドマインを検証し、エクスポートします。管理者のパスワードを入力と言われた時に、*welcome1*を入力してください。
@@ -246,6 +249,8 @@ a2c-healthcheck completed successfully (exit code = 0)
 
 ##### ２．２．AppToCloud成果物格納用のコンテナーの作成
 
+次のステップで、AppToCloudツールにあるスクリプト `a2c-export.sh`を実行し、成果物をCloud Storage Containerに格納するので、事前にコンテナーを作成する必要です。
+
 **Step-1** Oracleのクラウドに[ログイン](common/sign.in.to.oracle.cloud.md)し、ダッシュボードから「Storage Classic」をクリックします。
 
 ![](images/create.container.01.PNG)
@@ -262,18 +267,22 @@ a2c-healthcheck completed successfully (exit code = 0)
 
 ![](images/create.container.04.PNG)
 
+**Step-5** 作成完了です。
+
+![](images/create.container.05.PNG)
+
 ##### ２．３．`a2c-export.sh`実行
 
-エクスポートツールは、ドメインの構成とJavaアプリケーションを取得します。 ヘルスチェックツールによって以前に生成されたアーカイブファイルを更新し、JSONファイルを生成し、これらのAppToCloud成果物を３．１で作成したストレージコンテナにアップロードします。
+エクスポートツールは、ドメインの構成とJavaアプリケーションを取得します。 ヘルスチェックツールによって以前に生成されたアーカイブファイルを更新し、JSONファイルを生成し、これらのAppToCloud成果物を２．２．で作成したストレージコンテナにアップロードします。
 
 
 **Step-1** AppToCloudツールにあるスクリプト `a2c-export.sh`を実行ます。このスクリプトのパラメータは下記です：
 
-- -oh：WebLogicサーバがインストールしている最上位ディレクトリ。 `ORACLE_HOME`とも呼ばれます。
-- -domainDir：WebLogicサーバドマインの最上位ディレクトリ
-- -archiveFile：アーカイブとJSONコンフィグファイルの出力先zipファイル名
+- -oh：WebLogicサーバーがインストールしている最上位ディレクトリ。 `ORACLE_HOME`とも呼ばれます。
+- -domainDir：WebLogicサーバードマインの最上位ディレクトリ
+- -archiveFile：アーカイブファイル出力先のZipファイルパス
 - -cloudStorageContainer：Cloud Storage Container（フォーマット： `Storage-MyAccount/MyContainer`）
-- -cloudStorageUser：Cloud Storage ユーザー名
+- -cloudStorageUser：クラウドのユーザー名（別途配布）
 
 下記で示しているパラメータの中に、Cloud Storage Conatiner関連の情報以外は、事前に用意しているVirtualBox イメージにかかわっています。必要に応じ変更してください。Cloud Storageのパスワードを入力と言われた時に、別途配布の資料を参照して入力してください。
 
@@ -314,7 +323,7 @@ a2c-export completed successfully (exit code = 0)
 [oracle@localhost bin]$ 
 ```
 
-**Step-2** Export ツールが成功したこと（exit code = 0）を確認してください。生成されたJSONファイルも確認してください。もし何か問題が有れば、問題点を解決してもう一回Export ツールを実行してください。
+**Step-2** Export ツールが成功したこと（exit code = 0）を確認してください。生成されたJSONファイルも確認してください。ステップ５．１でJSONファイルのCloud Storageのパスを利用するので、メモしておいてください。もし何か問題が有れば、問題点を解決してもう一回Export ツールを実行してください。
 
 このレポートをHTMLファイルで見ることも可能です。Export ツールの出力ログからHTMLファイルの箇所を示しているので、そちらを参照してください。
 
@@ -322,7 +331,9 @@ a2c-export completed successfully (exit code = 0)
 
 ##### ３．１．Oracle Database Cloud BackupモジュールRMANのインストール
 
-RMANは、事前に用意しているVirtualBox環境に既に入っています。もし、事前に用意しているVirtualBox環境を利用していない場合、[サイト](http://www.oracle.com/technetwork/database/availability/oracle-cloud-backup-2162729.html)からダウンロードする必要です。RMANバックアップ・モジュールインストールの前提及び注意点：
+RMANのインストーラは、事前に用意しているVirtualBox環境に既に入っています。下記のステップに従って、インストールしてください。もし、事前に用意しているVirtualBox環境を利用していない場合、先に[サイト](http://www.oracle.com/technetwork/database/availability/oracle-cloud-backup-2162729.html)からダウンロードする必要です。
+
+RMANバックアップ・モジュールインストールの前提及び注意点：
 
 - JDK 1.7以降であること
 - Standard EditionのOracle Databaseを使用している場合、必要なパッチ
@@ -346,11 +357,11 @@ RMANは、事前に用意しているVirtualBox環境に既に入っています
 - -jar：RMANモジュールのjarファイルパス
 - -serviceName：Oracle Database Backup Cloud Serviceアカウント関連のサービス名（Storage）
 - -identityDomain：Oracle Database Backup Cloud Serviceアカウントのアイデンティティ・ドメイン
-- -opcId：クラウドのユーザー名
-- -opcPass：クラウドのパスワード
+- -opcId：クラウドのユーザー名（別途配布）
+- -opcPass：クラウドのパスワード（別途配布）
 - -walletDir：**Step-1**で作成したOracle Database Backup Cloud Serviceの資格証明が格納されるディレクトリ
 - -libDir：**Step-1**で作成したバックアップおよびリストアに使用されるシステム・バックアップ・ツー・テープ（SBT）ライブラリーが保管されているディレクトリー
-- -container：Storage Classic Cloud Serviceのコンテナー名
+- -container：バックアップファイル格納先のStorage Classic Cloud Serviceのコンテナー名。（存在しない場合は作成される。）
 
 ```
 $ [oracle@localhost u01]$ java -jar opc_install.jar -serviceName Storage -identityDomain gse00002265 -opcId 'cloud.admin'  -opcPass 'resoluTe@6RiOt' -walletDir  /home/oracle/OPC/wallet -libDir  /home/oracle/OPC/lib -container Db2CloudContainer
@@ -396,7 +407,7 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 
   ![](images/create.dbcs.02.PNG)
 
-**Step-3** 「Create Service」 をクリックします。
+**Step-3** 「Create Instance」 をクリックします。
 
   ![](images/create.dbcs.03.PNG)
 
@@ -417,7 +428,7 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 
 **Database Configuration：**
 - DB Name：通常はデフォルト値（ORCL）のままにしておきます。
-- Administrator Password：データベース管理者のパスワード
+- Administrator Password：データベース管理者のパスワード（8桁以上小文字大文字数字記号_-#の組合文字が必要、例：Ach1z0#d、Oracle Java Cloud Instance作成の際に使用されますので、メモしておいてください。）
 - Usable Database Storage(GB)：デフォルト値（25）のままにしておきます。
 - Compute Shape：デフォルト値（OC3）のままにしておきます。
 - SSH Public Key：開いているダイアログで新しい値を作成し、keyをダウンロードします。
@@ -425,18 +436,18 @@ Oracle Database Cloud Backup Module Install Tool, build 12.2.0.1.0DBBKPCSBP_2017
 **Backup and Recovery Configuration：**
 - Backup Destination：Both Cloud Storage and Local Storage
 - Cloud Storage Container：通常はデフォルト値のままにしておきます。
-- Username：クラウド Usernameと同じ
-- Password：クラウド Passwordと同じ
+- Username：クラウドのユーザー名（別途配布）
+- Password：クラウドのパスワード（別途配布）
 - Create Cloud Storage Container：チェックON
 
 **Initialize Data From Backup**
 - Create Instance from Existing Backup：Yes
 - On-Premises Backup：チェックON
-- Database ID：rman targetで確認したDBIDを入力します。
-- Decryption Method：事前に用意したスクリプトrun_backup.shに記載のパスワード**my_pswd**を入力します。
+- Database ID：３．２の**Step-5**で rman targetで確認したDBIDを入力します。
+- Decryption Method：３．２の**Step-2**で 実行したスクリプトrun_backup.shに記載の暗号化パスワードと同じ、**my_pswd**を入力します。
 - Cloud Storage Container：DBバックアップファイル格納のコンテナーを入力します。
-- Username：クラウド Usernameと同じ
-- Password：クラウド Passwordと同じ
+- Username：クラウドのユーザー名（別途配布）
+- Password：クラウドのパスワード（別途配布）
 
 <br/>![](images/create.dbcs.05.PNG)
 
@@ -478,7 +489,7 @@ Oracle Database Cloud Serviceのインスタンス作成した際に、いくつ
 
 ##### ５．１．AppToCloud で Oracle Java Cloud Service のインスタンスの作成
 
-ソースドメインの設定とアプリケーションをOracle Java Cloud Serviceにインポートするには、以前にAppToCloudツールで生成したファイルに新しいサービス・インスタンスを関連付ける必要があります。
+元のWebLogic Serverドメインの設定情報とアプリケーションをOracle Java Cloud Serviceにインポートするには、以前にAppToCloudツールで生成したファイルに新しいサービス・インスタンスを関連付ける必要があります。
 
 AppToCloudを使用してサービス・インスタンスを作成する手順は、ほとんど標準サービス・インスタンスの作成手順と同じです。 ただし、追加の手順がいくつかあります：
 
@@ -489,15 +500,15 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 
   ![](images/createJCS1.PNG)
 
-**Step-2**  「Create Service」 をクリックし、 「Oracle Java Cloud Service — AppToCloud」 を選択します。
+**Step-2**  「Create Instance」 をクリックし、 「Oracle Java Cloud Service — AppToCloud」 を選択します。
 
   ![](images/createJCS2.PNG)
 
 **Step-3** Export ツールで生成されたJSONファイルの詳細を提供します。
 
-- Exported .json File：Oracle Storage Cloud ServiceにアップロードされたJSONファイルの完全修飾名を入力します。例：Storage-MyAccount/Container1/domain1.json
-- Cloud Storage User Name：クラウド Usernameと同じ
-- Cloud Storage Password：クラウド Passwordと同じ
+- Exported .json File：Oracle Storage Cloud ServiceにアップロードされたJSONファイルの完全修飾名を入力します。例：Storage-MyAccount/Container1/domain1.json。（２．３の**Step-2**でメモしたJSONファイルパスを使用してください。）
+- Cloud Storage User Name：クラウドのユーザー名（別途配布）
+- Cloud Storage Password：クラウドのパスワード（別途配布）
 
 <br/>![](images/createJCS3.PNG)
 
@@ -517,26 +528,28 @@ AppToCloudを使用してサービス・インスタンスを作成する手順�
 
 **WebLogic Configuration：**
 
+- WebLogic Clusters：デフォルト値（petstore_cluster）のままにしておきます。
+- Compute Shape：デフォルト値（OC3）のままにしておきます。
 - Enable access to Administration Consoles：チェックON
 
 **Database Configuration：**
 
-- Database Instance Name：用意したDatabase インスタンスpetstoreを選択します。
+- Database Instance Name：４．１で作成したDatabase インスタンスpetstoreを選択します。
 - PDB Name：通常はデフォルト値（PDB1）のままにしておきます。
 - Database Administrator Username：sys
-- Database Password：データベース管理者のパスワード
+- Database Password：データベース管理者のパスワード（４．１の**Step-5**でメモしたデータベース管理者のパスワードを使用してください。）
 
 **WebLogic Access：**
 
 - SSH Public Key：開いているダイアログで新しい値を作成し、keyをダウンロードします。
 - Local Administrative Username：通常はデフォルト値（weblogic）のままにしておきます。
-- Password：WebLogic管理者のパスワード
+- Password：WebLogic管理者のパスワード（8桁以上文字列、数字が必要、例：Ach1z0#d、次のステップで使用されますので、メモしておいてください。）
 
 **Backup and Recovery Configuration：**
 
 - Backup Destination：Both Remote and Disk Storage
-- Username：クラウド Usernameと同じ
-- Password：クラウド Passwordと同じ
+- Username：クラウドのユーザー名（別途配布）
+- Password：クラウドのパスワード（別途配布）
 - Create Cloud Storage Container：チェックON
 
 **Load Balancer：**
@@ -647,7 +660,7 @@ HTTPポートを介したロード・バランサ(Oracle Traffic Director)への
 - Rule Name：一意の名前を指定します。
 - Description：任意の文字列を入力します。
 - Source：「PUBLIC-INTERNET」を選択します。
-- Destination：OTDサーバを選択します。
+- Destination：OTDサーバーを選択します。
 - Destination Port(s)：80
 - Protocol：デフォルト値（TCP）のままにしておきます。  
   
